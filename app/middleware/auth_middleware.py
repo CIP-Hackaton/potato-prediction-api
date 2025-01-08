@@ -9,10 +9,11 @@ from app.config import settings
 
 async def auth_middleware(request: Request, call_next: Callable):
     # Skip auth routes and documentation
-    if request.url.path.startswith("/api/v1/auth/") or \
-       request.url.path.startswith("/docs") or \
-       request.url.path.startswith("/openapi.json") or \
-       request.url.path.startswith("/redoc"):
+    if  request.url.path.startswith("/api/v1/auth/") or \
+        request.url.path.startswith("/docs") or \
+        request.url.path.startswith("/openapi.json") or \
+        request.url.path.startswith("/redoc") or \
+        request.url.path.startswith("/health"):
         return await call_next(request)
 
     # Get authorization header
