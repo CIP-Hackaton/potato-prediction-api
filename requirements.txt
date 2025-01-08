@@ -1,0 +1,18 @@
+# FastAPI
+fastapi[standard]
+
+# Databases
+sqlalchemy
+pydantic
+pydantic[email]
+psycopg2-binary
+
+# JWT
+bcrypt
+PyJWT
+uvicorn
+
+# Dependency Injection
+dependency-injector
+
+pydantic_settings
