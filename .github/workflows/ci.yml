@@ -33,4 +33,4 @@ jobs:
       - name: Verify application is running
         run: |
           sleep 10
-          curl --fail http://localhost:8000/health || (docker logs my_app_container && exit 1)
+          curl --fail http://localhost:8000/api/v1/health || (docker logs my_app_container && exit 1)
