@@ -23,7 +23,8 @@ class Container(containers.DeclarativeContainer):
             "app.api.v1.endpoints.auth",
             "app.api.v1.endpoints.potatoes",
             "app.api.v1.endpoints.predict",
-            "app.api.v1.endpoints.predictions"
+            "app.api.v1.endpoints.predictions",
+            "app.api.v1.endpoints.user",
         ]
     )
 
