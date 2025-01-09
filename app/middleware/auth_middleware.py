@@ -8,6 +8,12 @@ from app.services.jwt_service import TokenServiceJWT
 from app.config import settings
 
 async def auth_middleware(request: Request, call_next: Callable):
+
+    # Permitir solicitudes OPTIONS sin autenticación
+    if request.method == "OPTIONS":
+        return await call_next(request)
+
+
     # Skip auth routes and documentation
     if  request.url.path.startswith("/api/v1/auth/") or \
         request.url.path.startswith("/docs") or \

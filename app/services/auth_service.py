@@ -41,7 +41,7 @@ class AuthService():
             raise ValueError(f"Error creating user: {str(e)}")
 
     def authenticate_user(self, user_data: UserLoginSchema) -> str:
-        user = self.user_repository.get_user_by_email(user_data.email)
+        user = self.user_repository.get_by_email(user_data.email)
         if not user:
             raise ValueError("Invalid credentials")
 

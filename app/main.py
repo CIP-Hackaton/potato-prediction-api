@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from app.api import router
 from app.container import Container
 from app.middleware.auth_middleware import auth_middleware
@@ -13,6 +14,19 @@ app = FastAPI(
     title="Potato prediction",
     description="API para la predicción de la características ideales de papa.",
     version="0.1"
+)
+
+# Configuración de CORS
+origins = [
+    "http://localhost:5173",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["GET","POST","PUT", "OPTIONS"],
+    allow_headers=['Content-Type', 'Authorization'],
 )
 
 # Add auth middleware
