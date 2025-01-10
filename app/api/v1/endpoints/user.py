@@ -29,3 +29,7 @@ def register_user(request: Request, user_service: UserService = Depends(Provide[
         return user
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
+@router.get("/validate")
+def validate_token():
+    return {"message": "Token is valid"}

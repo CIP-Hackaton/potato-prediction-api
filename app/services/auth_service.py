@@ -55,3 +55,15 @@ class AuthService():
         }
         
         return self.token_service.create_token(token_data)
+    
+    def validate_token(self, token: str) -> dict:
+        try:
+            token_data = self.token_service.verify_token(token)
+            
+            if not token_data:
+                raise ValueError("Invalid token")
+            
+            return True
+
+        except Exception as e:
+            raise ValueError(f"Invalid token: {str(e)}")
