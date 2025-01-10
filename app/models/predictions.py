@@ -12,6 +12,7 @@ class Predictions(Base):
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     campesino_response = Column(JSON)
     p_characteristic = Column(JSON)
+    details = Column(JSON)
     owner = Column(UUID(as_uuid=True), ForeignKey('user.id'))
     allowed_user = Column(ARRAY(UUID))  
     created_at = Column(TIMESTAMP, server_default=text('CURRENT_TIMESTAMP'))

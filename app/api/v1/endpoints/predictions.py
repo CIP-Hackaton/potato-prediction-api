@@ -7,7 +7,7 @@ from app.services.predictions_service import PredictionsService
 
 router = APIRouter()
 
-@router.get("/")
+@router.get("")
 @inject
 def get_predictions(
     request: Request,

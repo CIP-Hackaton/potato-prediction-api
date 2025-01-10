@@ -7,7 +7,7 @@ from app.services.potatoes_service import PotatoesService
 
 router = APIRouter()
 
-@router.get("/")
+@router.get("")
 @inject
 def register_user(potatoes_service: PotatoesService = Depends(Provide[Container.potatoes_service])):
     return potatoes_service.get_potatoes()
