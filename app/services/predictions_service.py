@@ -15,8 +15,8 @@ class PredictionsService:
             filtered_response = [
                 {
                     'id': prediction.id,
-                    'campesino_response': prediction.campesino_response,
-                    'created_at': prediction.created_at
+                    'name': prediction.details['name'],
+                    'date': prediction.created_at.strftime('%Y-%m-%d')
                 }
                 for prediction in predictions
             ]
