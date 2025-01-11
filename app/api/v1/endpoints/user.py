@@ -24,7 +24,7 @@ def register_user(request: Request, user_service: UserService = Depends(Provide[
 
         user.role = role.get(str(user.role))
 
-        user.pop("password")
+        user.password = "********"
 
         return user
     except Exception as e:
