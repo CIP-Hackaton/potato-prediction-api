@@ -17,7 +17,7 @@ class SessionLocal():
 
     def __init__(self, db_url: str) -> None:
         # Inicializa el motor de base de datos con la URL proporcionada
-        self._engine = create_engine(db_url, echo=True)
+        self._engine = create_engine(db_url, client_encoding='utf8', echo=True)
         # Crea una fábrica de sesiones con scope
         self._session_factory = orm.scoped_session(
             orm.sessionmaker(

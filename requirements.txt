@@ -16,3 +16,10 @@ uvicorn
 dependency-injector
 
 pydantic_settings
+
+
+## Para el modelo de IA
+pmdarima
+scipy
+tensorflow
+joblib
