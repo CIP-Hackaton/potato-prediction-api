@@ -74,6 +74,9 @@ class Model:
             })
 
         normas_diferencia.sort(key=lambda x: x["Norma_Diferencia"])
+        normas_diferencia = normas_diferencia[:10]
+
+
         # Redondear el vector ideal y convertirlo a enteros, ignorando el segundo elemento
         dry_matter = vector_ideal[0][1]
         vector_ideal = np.round(vector_ideal)

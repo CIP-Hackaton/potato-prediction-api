@@ -18,7 +18,7 @@ def get_predictions(
 
 @router.get("/{prediction_id}")
 @inject
-def get_prediction(prediction_id: int, predictions_service: PredictionsService = Depends(Provide[Container.predictions_service])):
+def get_prediction(prediction_id: str, predictions_service: PredictionsService = Depends(Provide[Container.predictions_service])):
     try:
         return predictions_service.get_prediction(prediction_id)
     except ValueError:

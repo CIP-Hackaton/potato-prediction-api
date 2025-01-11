@@ -82,5 +82,6 @@ class Container(containers.DeclarativeContainer):
     predict_service = providers.Factory(
         PredictService,
         predictions_service=predictions_service,
+        potatoes_service=potatoes_service,
         model=ai_model
     )

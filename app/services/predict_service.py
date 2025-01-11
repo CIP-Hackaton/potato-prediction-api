@@ -3,6 +3,7 @@ import uuid
 
 from app.ai.model import Model
 from app.services.predictions_service import PredictionsService
+from app.services.potatoes_service import PotatoesService
 from app.schemas.predictions import FormPredict
 
 
@@ -13,9 +14,10 @@ class PredictService:
         'Periodo de crecimiento en altura': {0: 'Temprana', 1: 'Media', 2: 'Tardía'}
     }
 
-    def __init__(self, model: Model, predictions_service: PredictionsService):
+    def __init__(self, model: Model, predictions_service: PredictionsService, potatoes_service: PotatoesService):
         self.model = model
         self.predictions_service = predictions_service
+        self.potatoes_service = potatoes_service
 
     
     def post_process(self, form: FormPredict, norma_variedades: list, vector_ideal: list, user_id):
@@ -42,13 +44,27 @@ class PredictService:
             "Forma de los ojos": forma_ojos
         }
 
-        normvariedades_dict = {f"variedad_{i}": variedad for i, variedad in enumerate(norma_variedades)}
+        potatoes = self.potatoes_service.get_potatoes()
+
+        normvariedades_dict = {f"{variedad['Variety']}": variedad for i, variedad in enumerate(norma_variedades)}
+
+        for potato in potatoes:
+            if potato.name in normvariedades_dict:
+                normvariedades_dict[potato.name].update({
+                    "characteristics": potato.characteristics,
+                    "url_photo": potato.url_photo,
+                    "description": potato.description,
+                    "name": potato.name,
+                    "norm": normvariedades_dict[potato.name]['Norma_Diferencia']
+                })
+
+        normvariedades_array = list(normvariedades_dict.values())
    
         prediction ={
             "details": details,
             "owner": user_id,
             "p_characteristics": p_characteristics,
-            "campesino_response": normvariedades_dict,
+            "campesino_response": normvariedades_array,
             "allowed_user": [user_id]
         }
 

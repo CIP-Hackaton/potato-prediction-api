@@ -28,6 +28,7 @@ class PredictionsService:
     def get_prediction(self, prediction_id):
         try:
             prediction = self.predictions_repository.get_prediction(prediction_id)
+
             return prediction
         except Exception as e:
             raise Exception(f"Error getting prediction {prediction_id}")

@@ -2,7 +2,7 @@ import jwt
 from datetime import datetime, timedelta
 
 class TokenServiceJWT():
-    def __init__(self, secret_key: str, algorithm: str = "HS256", expiration_minutes: int = 30):
+    def __init__(self, secret_key: str, algorithm: str = "HS256", expiration_minutes: int = 300):
         self.secret_key = secret_key
         self.algorithm = algorithm
         self.expiration_minutes = expiration_minutes
